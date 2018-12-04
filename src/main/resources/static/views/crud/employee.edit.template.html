@@ -1,0 +1,105 @@
+<div class="container">
+<br>
+	<div class="panel panel-default">
+		<div class="panel-heading"></div>
+		<div class="panel-body">
+			<form class="form-group" name="editEmployeeForm" novalidate>
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label class="badge badge-light">First
+							name</label> <input type="text" class="form-control" 
+							placeholder="First name" ng-model="employeeToEdit.firstName" required>
+					</div>
+					<div class="form-group col-md-6">
+						<label class="badge badge-light">BU</label> <input
+							type="text" class="form-control" placeholder="BU"
+							ng-model="employeeToEdit.bu">
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label class="badge badge-light">Last
+							name</label> <input type="text" class="form-control"
+							placeholder="Last name" ng-model="employeeToEdit.lastName" required>
+					</div>
+					<div class="form-group col-md-6">
+						<label class="badge badge-light">Team</label> <input
+							type="text" class="form-control"
+							placeholder="Team" ng-model="employeeToEdit.team">
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label class="badge badge-light">Position</label>
+						<input type="text" class="form-control"
+							placeholder="Position" ng-model="employeeToEdit.position" required>
+					</div>
+					<div class="form-group col-md-6">
+						<label class="badge badge-light">Email</label> <input
+							type="email" class="form-control"
+							placeholder="Enter E-mail" ng-model="employeeToEdit.mail">
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label class="badge badge-light">Start
+							date</label> <input type="date" class="form-control"
+							placeholder="Start date" ng-model="employeeToEdit.startDate">
+					</div>
+					<div class="form-group col-md-6">
+						<label class="badge badge-light">Seniority</label>
+						<input type="text" class="form-control"
+							placeholder="Seniority" ng-model="employeeToEdit.seniority">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group col-md-6">
+						<label class="badge badge-light">Manager</label>
+						<select ng-model="selectedManager"
+							class="form-control selectpicker"
+							ng-options="m as (m.firstName + ' ' + m.lastName + '  [' + m.position + ']') for m in manageres">
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-md-6">
+						<label class="badge badge-light">Roles :</label>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox"
+								ng-model="employeeToEdit.isAdmin"> <label
+								class="form-check-label">Admin</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox"
+								ng-model="employeeToEdit.isManager"> <label
+								class="form-check-label">Manager</label>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group col-md-2">
+						<button class="btn btn-primary form-control" ng-click="update()"
+							ng-disabled="editEmployeeForm.$invalid">Edit</button>
+					</div>
+					<div class="form-group col-md-2">
+						<button class="btn btn-warning form-control"
+							ui-sref="employeeList">
+							Employees <i class="fa fa-users"></i>
+						</button>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+				<div class="alert alert-success" ng-show="succes">{{succes}}</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>

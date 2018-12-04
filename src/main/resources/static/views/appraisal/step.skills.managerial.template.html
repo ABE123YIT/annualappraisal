@@ -1,0 +1,40 @@
+<div class="container" ng-init="getAll()">
+	<table class="table table-striped table-hover table-sm">
+		<thead>
+			<tr>
+				<th>Managerial skills</th>
+				<th>Level</th>
+				<th>Meaning</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="s in managerialskills">
+				<td style="vertical-align: middle">{{ s.label }}</td>
+				<td colspan="2">
+					<div class="form-inline" ng-repeat="l in s.skillLevelBeans">
+						<div class="col col-md-2">{{ l.ranking }}</div>
+						<div class="col col-md-8">{{ l.meaning }}</div>
+						<div>
+							<input type="radio" name="{{ s.label }}"
+								ng-checked="l.checked" ng-click="check(s.skillLevelBeans, l)">
+						</div>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="row">
+	<button type="submit" class="btn btn-xs btn-primary" ng-click="save()">
+			Validate
+		</button>
+	</div>
+	
+	<div class="row">
+	<button type="submit" class="btn btn-xs btn-primary" ui-sref="stepSoftSkills">
+			Previous
+		</button>
+	<button type="submit" class="btn btn-xs btn-primary" ui-sref="stepSynthesis">
+			Next
+		</button></div>
+</div>

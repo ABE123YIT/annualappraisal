@@ -1,0 +1,48 @@
+<div class="container">
+	<table class="table table-striped table-hover"
+		style="margin-bottom: 5px; margin-top: 40px">
+		<thead>
+			<tr>
+				<th style="width: 20%">Objectives</th>
+				<th style="width: 15%">Indicator</th>
+				<th style="width: 15%">Means</th>
+				<th style="width: 10%">Deadline</th>
+				<th style="width: 10%">Rating</th>
+				<th style="width: 30%">Comment</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="o in objectives">
+				<td>{{o.label}}</td>
+				<td>{{o.indicator}}</td>
+				<td>{{o.mean}}</td>
+				<td>{{o.deadline}}</td>
+				<td><select ng-model="o.rating"
+					class="form-control selectpicker"
+					ng-options="r as r.code for r in ratings track by r.id">
+				</select></td>
+				<td><input type="text" class="form-control"
+					ng-model="o.comment"></td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="row">
+		<button type="submit" class="btn btn-xs btn-primary" ng-click="save()">
+			Validate<span class="glyphicon glyphicon-send"></span>
+		</button>
+		<button type="sublit" class="btn btn-xs btn-warning"
+			ng-click="cancel()">
+			<span class="class="glyphiconglyphicon-trash"></span>Cancel
+		</button>
+	</div>
+	<div class="alert alert-success margin-top-5" ng-if="succes">{{succes}}</div>
+	
+	<div class="row">
+	<button type="submit" class="btn btn-xs btn-primary" ui-sref="stepHome">
+			Previous
+		</button>
+	<button type="submit" class="btn btn-xs btn-primary" ui-sref="stepCompetencies">
+			Next
+		</button></div>
+
+</div>

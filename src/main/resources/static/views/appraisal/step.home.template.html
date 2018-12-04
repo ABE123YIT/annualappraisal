@@ -1,0 +1,38 @@
+<div class="container">
+
+	<div class="row">
+		<div>
+			<label class="badge badge-info">Appraisal date</label>
+		</div>
+		<div class="col-sm-4">
+			<input type="date" placeholder="Appraisal date"
+				ng-model="appraisal.appraisalDate">
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-sm-6">
+			<h6>
+				<b>Employee</b>
+			</h6>
+			<br> <label class="badge badge-info">Last Name</label> <label>&nbsp{{employee.lastName}}</label><br>
+			<label class="badge badge-info">First Name</label> <label>&nbsp{{employee.firstName}}</label><br>
+			<label class="badge badge-info">Position</label> <label>&nbsp{{employee.position}}</label><br>
+			<label class="badge badge-info">N+2</label> <label>&nbsp{{manager.manager.firstName}}&nbsp{{manager.manager.lastName}}</label><br>
+			<label class="badge badge-info">Start date in this position</label> <label>&nbsp{{employee.startDate}}</label><br>
+		</div>
+		<div class="col-sm-6">
+			<h6>
+				<b>Manager</b>
+			</h6>
+			<br> <label class="badge badge-info">Last Name:</label> <label>&nbsp{{manager.lastName}}</label><br>
+			<label class="badge badge-info">First Name:</label> <label>&nbsp{{manager.firstName}}</label><br>
+			<label class="badge badge-info">Position:</label> <label>&nbsp{{manager.position}}</label><br>
+
+		</div>
+
+	</div>
+	<div class="row"><button type="submit" class="btn btn-xs btn-primary" ui-sref="stepLastObjectives">
+			Next
+		</button></div>
+</div>

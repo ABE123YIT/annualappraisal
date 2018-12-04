@@ -1,0 +1,143 @@
+<div class="container" ng-init="getAll()">
+	<br>
+	<div class="panelpanel-default">
+		<div class="panel-heading"></div>
+		<div class="panel-body">
+
+			<div class="form-inline">
+				<div class="form-row">
+					<div class="col col-md-2">
+						<button class="btn btn-warning" data-toggle="modal"
+							data-target="#addRatingModal">
+							Create <i class="fa fa-user-plus"></i>
+						</button>
+					</div>
+				</div>
+
+			</div>
+			<br>
+			<table class="table table-striped table-hover table-sm">
+				<thead>
+					<tr>
+						<th>Code rating</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="r in ratings">
+						<td>{{ r.code }}</td>
+						<td>{{ r.label }}</td>
+						<td>
+							<button class="btn" data-toggle="modal"
+								data-target="#updateRatingModal" ng-click="setModal(r)">
+								<i class="fa fa-edit"></i>
+							</button>
+							<button class="btn"
+								ng-confirm-click="Are you sure to delete this rating ?"
+								confirmed-click="remove(r.id)">
+								<i class="fa fa-trash"></i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<br>
+			<div class="form-inline">
+				<div class="form-row">
+					<div class="alert alert-success" ng-show="succes">{{succes}}</div>
+				</div>
+			</div>
+			<div class="modal" id="addRatingModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title">Create rating</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+
+						<!-- Modal body -->
+						<div class="modal-body">
+
+							<form class="form-group" name="createRatingForm" novalidate>
+								<div class="form-row">
+									<div class="form-group col-md-2">
+										<label class="badge badge-light">Code</label> <input
+											type="text" class="form-control" placeholder="Code rating"
+											ng-model="rating.code" required>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label class="badge badge-light">Label</label> <input
+											type="text" class="form-control"
+											placeholder="Description of rating" ng-model="rating.label"
+											required>
+									</div>
+								</div>
+							</form>
+						</div>
+
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Cancel</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal" ng-click="save(rating)">Create</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="modal" id="updateRatingModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title">Edit rating</h4>
+							<button type="button" class="close" data-dismiss="modal"
+								ng-click="reset()">&times;</button>
+						</div>
+
+						<!-- Modal body -->
+						<div class="modal-body">
+							<form class="form-group" name="editRatingForm" novalidate>
+
+								<div class="form-row">
+									<div class="form-group col-md-2">
+										<label class="badge badge-light">Code</label> <input
+											type="text" class="form-control" placeholder="Code rating"
+											ng-model="selectedRating.code" required>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label class="badge badge-light">Label</label> <input
+											type="text" class="form-control"
+											placeholder="Description of rating"
+											ng-model="selectedRating.label" required>
+									</div>
+								</div>
+							</form>
+						</div>
+
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal" ng-click="resetLevel()">Cancel</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal"
+								ng-click="update(selectedRating.id, selectedRating)">Edit</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

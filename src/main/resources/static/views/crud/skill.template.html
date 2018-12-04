@@ -1,0 +1,294 @@
+<div class="container" ng-init="getAll()">
+	<br>
+	<div class="panelpanel-default">
+		<div class="panel-heading"></div>
+		<div class="panel-body">
+
+			<div class="form-inline">
+				<div class="form-row">
+					<div class="col col-md-2">
+						<button class="btn btn-warning" data-toggle="modal"
+							data-target="#addSkillModal">
+							Create <i class="fa fa-user-plus"></i>
+						</button>
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="col col-md-4">
+						<input type="text" class="form-control" ng-model="keyword"
+							placeholder="Search skill">
+					</div>
+				</div>
+			</div>
+			<br>
+			<table class="table table-striped table-hover table-sm">
+				<thead>
+					<tr>
+						<th>Skill</th>
+						<th>Type</th>
+						<th>Level</th>
+						<th>Meaning</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr
+						ng-repeat="s in skills | searchLabel: keyword | paginate:currentPage*pageSize | limitTo:pageSize">
+						<td style="vertical-align:middle">{{ s.label }}</td>
+						<td style="vertical-align:middle">{{ s.type }}</td>
+						<td colspan="2">
+						<div class="form-inline" ng-repeat="l in s.skillLevels">
+						<div class="col col-md-2">{{ l.ranking }}</div>
+						<div class="col col-md-8">{{ l.meaning }}</div>
+						<div><button class="btn" data-toggle="modal"
+								data-target="#updateLevelModal" ng-click="setLevelModal(l,s)">
+								<i class="fa fa-edit"></i>
+							</button>
+							<button class="btn"
+								ng-confirm-click="Are you sure to delete this level?"
+								confirmed-click="removeLevel(l.id)">
+								<i class="fa fa-trash"></i>
+							</button></div>
+						</div>
+						</td>
+						<td style="vertical-align:middle">
+							<button class="btn" data-toggle="modal"
+								data-target="#addLevelModal" ng-click="setLevelAddModal(s)">
+								<i class="fa fa-plus"></i>
+							</button>
+							<button class="btn" data-toggle="modal"
+								data-target="#updateSkillModal" ng-click="setModal(s)">
+								<i class="fa fa-edit"></i>
+							</button>
+							<button class="btn"
+								ng-confirm-click="Are you sure to delete this skill and their levels?"
+								confirmed-click="remove(s.id)">
+								<i class="fa fa-trash"></i>
+							</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<br>
+			<div class="pagination">
+				<button class="badge badge-primary" ng-disabled="currentPage == 0"
+					ng-click="currentPage=currentPage-1">Previous</button>
+				<button class="badge badge-warning" ng-disabled>{{currentPage+1}}
+					of {{numberOfPages()}}</button>
+				<button class="badge badge-primary"
+					ng-disabled="currentPage >= skills.length/pageSize - 1"
+					ng-click="currentPage=currentPage+1">Next</button>
+			</div>
+			<br>
+			<div class="form-inline">
+				<div class="form-row">
+					<div class="alert alert-success" ng-show="succes">{{succes}}</div>
+				</div>
+			</div>
+			<div class="modal" id="addSkillModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title">Create skill</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+
+						<!-- Modal body -->
+						<div class="modal-body">
+
+							<form class="form-group" name="createSkillForm" novalidate>
+
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label class="badge badge-light">Skill</label> <input
+											type="text" class="form-control" placeholder="Skill"
+											ng-model="skill.label" required>
+									</div>
+								</div>
+
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label class="badge badge-light">Type : </label> <input
+											type="radio" name="typeSkill" ng-model="skill.type"
+											value="Soft"> <label class="badge">Soft</label> <input
+											type="radio" name="typeSkill" ng-model="skill.type"
+											value="Managerial"><label class="badge">Managerial</label>
+									</div>
+								</div>
+							</form>
+						</div>
+
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Cancel</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal" ng-click="save(skill)">Create</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="modal" id="updateSkillModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title">Edit skill</h4>
+							<button type="button" class="close" data-dismiss="modal"
+								ng-click="reset()">&times;</button>
+						</div>
+
+						<!-- Modal body -->
+						<div class="modal-body">
+							<form class="form-group" name="editSkillForm" novalidate>
+
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label class="badge badge-light">Skill</label> <input
+											type="text" class="form-control" placeholder="Skill"
+											ng-model="selectedSkill.label" required>
+									</div>
+								</div>
+
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label class="badge badge-light">Type</label> <input
+											type="radio" name="skillType" ng-model="selectedSkill.type"
+											value="Soft" id="radioSoftId"> <label class="badge">Soft</label>
+										<input type="radio" name="skillType"
+											ng-model="selectedSkill.type" value="Managerial"
+											id="radioManagerialId"><label class="badge">Managerial</label>
+									</div>
+								</div>
+							</form>
+						</div>
+
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal" ng-click="resetLevel()">Cancel</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal"
+								ng-click="update(selectedSkill.id, selectedSkill)">Edit</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="modal" id="addLevelModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title">Create Level</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+
+						<!-- Modal body -->
+						<div class="modal-body">
+
+							<form class="form-group" name="createLevelForm" novalidate>
+
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label class="badge badge-light">Skill</label> {{skillLevel.skill.label}}
+									</div>
+								</div>
+
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label class="badge badge-light">Level</label> <input
+											type="number" class="form-control" placeholder="Level"
+											ng-model="skillLevel.ranking" required>
+									</div>
+								</div>
+								
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label class="badge badge-light">Meaning</label> <input
+											type="text" class="form-control" placeholder="Meaning"
+											ng-model="skillLevel.meaning" required>
+									</div>
+								</div>
+							</form>
+						</div>
+
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Cancel</button>
+							<button type="button" class="btn btn-default" ng-disabled="createLevelForm.$invalid"
+								data-dismiss="modal" ng-click="saveLevel(skillLevel)">Create</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<div class="modal" id="updateLevelModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title">Edit Level</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+
+						<!-- Modal body -->
+						<div class="modal-body">
+
+							<form class="form-group" name="updateLevelForm" novalidate>
+
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label class="badge badge-light">Skill</label>
+										{{skillLevelSelected.skill.label}}
+									</div>
+								</div>
+
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label class="badge badge-light">Level</label> <input
+											type="number" class="form-control" placeholder="Level"
+											ng-model="skillLevelSelected.ranking" required>
+									</div>
+								</div>
+
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label class="badge badge-light">Meaning</label> <input
+											type="text" class="form-control" placeholder="Meaning"
+											ng-model="skillLevelSelected.meaning" required>
+									</div>
+								</div>
+							</form>
+						</div>
+
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Cancel</button>
+							<button type="button" class="btn btn-default"
+								ng-disabled="updateLevelForm.$invalid" data-dismiss="modal"
+								ng-click="updateLevel(skillLevelSelected.id, skillLevelSelected)">Edit</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>

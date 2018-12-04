@@ -1,0 +1,38 @@
+<meta charset="UTF-8">
+<div ng-if="user.id != null" class="sidebar">
+
+	<div class="sidebar-header">
+		<div class="user-info">
+			<span class="user-name">{{user.firstName}} <strong>{{user.lastName}}</strong>
+			</span> <span class="user-position">{{user.position}}</span>
+		</div>
+	</div>
+
+
+	<a ui-sref="profil"><h5>
+			<i class="fa fa-user-circle"></i> <span class="badge">My
+				profil</span>
+		</h5></a> <a  ng-if="user.isManager==true" ui-sref="team"><h5>
+			<i class="fa fa-users"></i> <span class="badge">My team</span>
+		</h5></a> 
+		<a ui-sref="myAppraisals"><h5>
+			<i class="fa fa-tasks"></i> <span class="badge">My appraisals</span>
+		</h5></a>
+		<a ng-if="user.isAdmin==true" ui-sref="employeeList"><h5>
+			<i class="fa fa-gears"></i> <span class="badge">Employees</span>
+		</h5></a>
+		<a ng-if="user.isAdmin==true" ui-sref="skill"><h5>
+			<i class="fa fa-gears"></i> <span class="badge">Skills</span>
+		</h5></a>
+		<a ng-if="user.isAdmin==true" ui-sref="feedback"><h5>
+			<i class="fa fa-gears"></i> <span class="badge">Feedbacks</span>
+		</h5></a>
+		<a ng-if="user.isAdmin==true" ui-sref="rating"><h5>
+			<i class="fa fa-gears"></i> <span class="badge">Ratings</span>
+		</h5></a>
+		<a ng-if="user.isAdmin==true" ui-sref="annualsession"><h5>
+			<i class="fa fa-gears"></i> <span class="badge">Sessions</span>
+		</h5></a>
+		
+		
+</div>

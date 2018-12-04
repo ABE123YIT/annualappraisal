@@ -1,0 +1,89 @@
+<div class="container">
+<br>
+	<div class="panel panel-default">
+		<div class="panel-heading"></div>
+		<div class="panel-body">
+			<form class="form-group" name="profilForm" novalidate>
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label class="badge badge-light">First
+							name</label> <input type="text" class="form-control" 
+							placeholder="First name" ng-model="employee.firstName" required>
+					</div>
+					<div class="form-group col-md-6">
+						<label class="badge badge-light">Login</label> <input
+							type="text" class="form-control" placeholder="Login"
+							ng-model="employee.login">
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label class="badge badge-light">Last
+							name</label> <input type="text" class="form-control"
+							placeholder="Last name" ng-model="employee.lastName" required>
+					</div>
+					<div class="form-group col-md-6">
+						<label class="badge badge-light">Team</label> <input
+							type="text" class="form-control"
+							placeholder="Team" ng-model="employee.team">
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label class="badge badge-light">Position</label>
+						<input type="text" class="form-control"
+							placeholder="Position" ng-model="employee.position" required>
+					</div>
+					<div class="form-group col-md-6">
+						<label class="badge badge-light">Email</label> <input
+							type="email" class="form-control"
+							placeholder="Enter E-mail" ng-model="employee.mail">
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="form-group col-md-6">
+						<label class="badge badge-light">Manager</label>
+						<input
+							type="text" class="form-control" placeholder="Manager" disabled="true"
+							ng-model="managerName">
+					</div>
+					<div class="form-group col-md-6">
+						<label class="badge badge-light">BU</label> <input
+							type="text" class="form-control" placeholder="BU"
+							ng-model="employee.bu">
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label class="badge badge-light">Start
+							date</label> <input type="date" class="form-control"
+							placeholder="Start date" ng-model="employee.startDate">
+					</div>
+					<div class="form-group col-md-6">
+						<label class="badge badge-light">Seniority</label>
+						<input type="text" class="form-control"
+							placeholder="Seniority" ng-model="employee.seniority">
+					</div>
+				</div>
+
+				
+				<div class="row">
+					<div class="form-group col-md-2">
+						<button class="btn btn-primary form-control" ng-click="update()"
+							ng-disabled="profilForm.$invalid">Edit</button>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+				<div class="alert alert-success" ng-show="succes">{{succes}}</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>

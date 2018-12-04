@@ -1,0 +1,30 @@
+<div class="container">
+
+			<caption>Global competencies</caption>
+	<table class="table  table-striped ">
+		<thead>
+			<tr>
+				<th>Strengths</th>
+				<th>to be improved</th>
+			</tr>
+		</thead>
+		<tr>
+			<td><textarea ng-model="appraisal.strenghts" cols="60"
+					rows="10"></textarea></td>
+			<td><textarea ng-model="appraisal.improved" cols="60" rows="10"></textarea>
+			</td>
+		</tr>
+	</table>
+	<button class="btn btn-xs btn-warning" ng-click="update()">
+			Validate</button>
+			
+			<div class="row">
+	<button type="submit" class="btn btn-xs btn-primary" ui-sref="stepManagerialSkills">
+			Previous
+		</button>
+	<button type="submit" class="btn btn-xs btn-primary" ui-sref="stepFeedbacks">
+			Next
+		</button></div>
+</div>
+
+

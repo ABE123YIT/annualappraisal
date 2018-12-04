@@ -1,0 +1,108 @@
+<div class="container">
+<br>
+	<div class="panel panel-default">
+		<div class="panel-heading"></div>
+		<div class="panel-body">
+			<form class="form-group" name="createEmployeeForm" novalidate>
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label class="badge badge-light" for="inputFirstName">First
+							name</label> <input type="text" class="form-control" id="inputFirstName"
+							placeholder="First name" ng-model="employee.firstName" required>
+					</div>
+					<div class="form-group col-md-6">
+						<label class="badge badge-light" for="inputBU">BU</label> <input
+							type="text" class="form-control" id="inputBU" placeholder="BU"
+							ng-model="employee.bu">
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label class="badge badge-light" for="inputLastName">Last
+							name</label> <input type="text" class="form-control" id="inputLastName"
+							placeholder="Last name" ng-model="employee.lastName" required>
+					</div>
+					<div class="form-group col-md-6">
+						<label class="badge badge-light" for="inputTeam">Team</label> <input
+							type="text" class="form-control" id="inputTeam"
+							placeholder="Team" ng-model="employee.team">
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label class="badge badge-light" for="inputPosition">Position</label>
+						<input type="text" class="form-control" id="inputPosition"
+							placeholder="Position" ng-model="employee.position" required>
+					</div>
+					<div class="form-group col-md-6">
+						<label class="badge badge-light" for="inputEmail">Email</label> <input
+							type="email" class="form-control" id="inputEmail"
+							placeholder="Enter E-mail" ng-model="employee.mail">
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label class="badge badge-light" for="inputStart">Start
+							date</label> <input type="date" class="form-control" id="inputStart"
+							placeholder="Start date" ng-model="employee.startDate">
+					</div>
+					<div class="form-group col-md-6">
+						<label class="badge badge-light" for="inputSeniority">Seniority</label>
+						<input type="text" class="form-control" id="inputSeniority"
+							placeholder="Seniority" ng-model="employee.seniority">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group col-md-6">
+						<label class="badge badge-light" for="inputManager">Manager</label>
+						<select id="inputManager" ng-model="employee.manager"
+							class="form-control selectpicker"
+							ng-options="m as (m.firstName + ' ' + m.lastName + '  [' + m.position + ']') for m in managers">
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="form-group col-md-6">
+						<label class="badge badge-light">Roles :</label>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox"
+								id="inlineCheckbox1" ng-model="employee.isAdmin"> <label
+								class="form-check-label" for="inlineCheckbox1">Admin</label>
+						</div>
+						<div class="form-check form-check-inline">
+							<input class="form-check-input" type="checkbox"
+								id="inlineCheckbox2" ng-model="employee.isManager"> <label
+								class="form-check-label" for="inlineCheckbox2">Manager</label>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="form-group col-md-2">
+						<button class="btn btn-warning form-control">Cancel</button>
+					</div>
+					<div class="form-group col-md-2">
+						<button class="btn btn-primary form-control" ng-click="save()"
+							ng-disabled="createEmployeeForm.$invalid">Save</button>
+					</div>
+					<div class="form-group col-md-2">
+						<button class="btn btn-warning form-control"
+							ui-sref="employeeList">
+							Employees <i class="fa fa-users"></i>
+						</button>
+					</div>
+				</div>
+				
+				<div class="row">
+				<div class="alert alert-success" ng-show="succes">{{succes}}</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>

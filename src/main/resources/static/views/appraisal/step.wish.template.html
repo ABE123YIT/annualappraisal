@@ -1,0 +1,28 @@
+<div class="container">
+<br><br>
+	<div class="row">
+		<label class="badge badge-default">Employee's wish</label>
+	</div>
+	<div class="row">
+		<textarea class="form-control" ng-model="appraisal.employeeWish" cols="100" rows="5"></textarea>
+	</div>
+	<div class="row">
+		<label class="badge badge-default">Manager's opinion</label>
+	</div>
+	<div class="row">
+		<textarea class="form-control" ng-model="appraisal.managerOpinion" cols="100" rows="5"></textarea>
+	</div>
+	<div class="row">
+		<button class="btn btn-xs btn-warning" ng-click="update()">
+			Validate</button>
+	</div>
+	<div class="row">
+	<button type="submit" class="btn btn-xs btn-primary" ui-sref="stepFeedbacks">
+			Previous
+		</button>
+	<button type="submit" class="btn btn-xs btn-primary" ui-sref="stepObjectives">
+			Next
+		</button></div>
+</div>
+
+
